@@ -40,7 +40,7 @@
                 app:iconSize="24dp"
                 app:icon="@drawable/round_calendar_month_24"/>
             <com.google.android.material.button.MaterialButton
-                s작tyle="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:id="@+id/dayLayoutButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
