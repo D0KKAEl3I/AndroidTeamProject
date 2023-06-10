@@ -2,13 +2,46 @@ package com.example.todolist;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.DatePicker;
+import android.widget.TextView;
+
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
+    TextView datePicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // on below line we are initializing our variables.
+        datePicker = findViewById(R.id.datePicker);
+
+        // on below line we are adding
+        // click listener for our edit text.
+        datePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final java.util.Calendar c = java.util.Calendar.getInstance();
+                int year = c.get(java.util.Calendar.YEAR);
+                int month = c.get(java.util.Calendar.MONTH);
+                int day = c.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(MainActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        datePicker.setText(String.format("%d년 %d월 %d일", year, month+1, dayOfMonth));
+                    }
+                }, year, month, day);
+                datePickerDialog.setTitle("날짜를 선택하세요.");
+                datePickerDialog.show();
+            }
+        });
     }
 }
