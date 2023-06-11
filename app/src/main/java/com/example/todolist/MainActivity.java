@@ -1,6 +1,7 @@
 package com.example.todolist;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -12,6 +13,9 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
     TextView datePicker;
+
+    private final int Day_fFagmemt = 1;
+    private final int Month_Fragment = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,5 +47,43 @@ public class MainActivity extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
+
+        findViewById(R.id.dayLayoutButton).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                FragmentView(Day_fFagmemt);
+            }
+        });
+
+        findViewById(R.id.monthLayoutButton).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                FragmentView(Month_Fragment);
+            }
+        });
+
+    }
+
+    private void FragmentView(int fragment) {
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        switch (fragment){
+            case 1:
+                // Day
+                DayFragment dayFragment = new DayFragment();
+                transaction.replace(R.id.fragmentContainerView, dayFragment);
+                transaction.commit();
+                break;
+
+            case 2:
+                // Month
+                MonthFragment monthFragment = new MonthFragment();
+                transaction.replace(R.id.fragmentContainerView, monthFragment);
+                transaction.commit();
+                break;
+        }
     }
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_main"
+    app:startDestination="@id/dayFragment">
+
+    <fragment
+        android:id="@+id/dayFragment"
+        android:name="com.example.todolist.DayFragment"
+        android:label="fragment_day_layout"
+        tools:layout="@layout/fragment_day_layout" >
+        <action
+            android:id="@+id/action_dayFragment_to_monthFragment"
+            app:destination="@id/monthFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/monthFragment"
+        android:name="com.example.todolist.MonthFragment"
+        android:label="fragment_month_layout"
+        tools:layout="@layout/fragment_month_layout" />
+</navigation>
