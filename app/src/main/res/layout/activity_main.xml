@@ -1,64 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical">
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/datePicker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:layout_gravity="center"
-            android:paddingLeft="16dp"
-            android:text="2023년 06월 10일"
-            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <com.google.android.material.button.MaterialButtonToggleGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:checkedButton="@+id/dayLayoutButton"
-            android:layout_gravity="center"
-            android:layout_marginRight="16dp"
-            app:singleSelection="true"
-            app:selectionRequired="true"
-            >
-            <com.google.android.material.button.MaterialButton
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:id="@+id/monthLayoutButton"
+            <TextView
+                android:id="@+id/datePicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="월"
-                android:minWidth="0dp"
-                android:padding="8dp"
-                app:iconSize="24dp"
-                app:icon="@drawable/round_calendar_month_24"/>
-            <com.google.android.material.button.MaterialButton
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:id="@+id/dayLayoutButton"
+                android:layout_gravity="center"
+                android:layout_weight="3"
+                android:paddingLeft="16dp"
+                android:text="2023년 06월 10일" />
+
+            <com.google.android.material.button.MaterialButtonToggleGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="일"
-                android:minWidth="0dp"
-                android:padding="8dp"
-                app:iconSize="24dp"
-                app:icon="@drawable/round_calendar_month_24"
-          />
-        </com.google.android.material.button.MaterialButtonToggleGroup>
+                android:layout_gravity="center"
+                android:layout_marginRight="16dp"
+                app:checkedButton="@+id/dayLayoutButton"
+                app:selectionRequired="true"
+                app:singleSelection="true">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/monthLayoutButton"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="0dp"
+                    android:padding="8dp"
+                    android:text="월"
+                    app:icon="@drawable/round_calendar_month_24"
+                    app:iconSize="24dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/dayLayoutButton"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="0dp"
+                    android:padding="8dp"
+                    android:text="일"
+                    app:icon="@drawable/round_calendar_month_24"
+                    app:iconSize="24dp" />
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+        </LinearLayout>
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/navigation_main" />
+
     </LinearLayout>
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/navigation_main" />
-</LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:backgroundTint="#00aaff"
+        android:tint="@color/white"
+        android:contentDescription="일정 추가"
+        android:src="@drawable/baseline_playlist_add_24_white" />
+</RelativeLayout>

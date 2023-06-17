@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        FragmentView(Day_fFagmemt); // 프로그램 실행 시 Day Fragment로 이동
 
         // on below line we are initializing our variables.
         datePicker = findViewById(R.id.datePicker);

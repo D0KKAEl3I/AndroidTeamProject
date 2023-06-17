@@ -3,26 +3,38 @@ package com.example.todolist;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link DayFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DayFragment extends Fragment {
+    public class DayFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+        // TODO: Rename parameter arguments, choose names that match
+        // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+        private static final String ARG_PARAM1 = "param1";
+        private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
+        // TODO: Rename and change types of parameters
+        private String mParam1;
     private String mParam2;
+
+    private RecyclerView mRecyclerView;
+
+    private TodoListAdapter mRecyclerAdapter;
+
+    private ArrayList<Todo> todoList;
 
     public DayFragment() {
         // Required empty public constructor
@@ -49,6 +61,7 @@ public class DayFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -59,6 +72,25 @@ public class DayFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_day_layout, container, false);
+        View v = inflater.inflate(R.layout.fragment_day_layout, container, false);
+        mRecyclerView =  v.findViewById(R.id.todoListView);
+
+        /* initiate adapter */
+        mRecyclerAdapter = new TodoListAdapter();
+
+        TextView asdf = v.findViewById(R.id.asdf);
+        System.out.println(asdf != null ? "qqqqqqq":"bbbbbbbbbbb");
+        asdf.setText("saddfsdfsdfsa!!!");
+        /* initiate recyclerview */
+        mRecyclerView.setAdapter(mRecyclerAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        todoList = new ArrayList<Todo>();
+        for (int i = 1; i <= 10; i++) {
+            todoList.add(new Todo("제목" + i, LocalDateTime.now(), i % 2 == 0));
+        }
+        mRecyclerAdapter.setTodoList(todoList);
+
+        return v;
     }
 }
