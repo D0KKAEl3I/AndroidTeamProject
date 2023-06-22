@@ -73,14 +73,11 @@ import java.util.ArrayList;
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_day_layout, container, false);
-        mRecyclerView =  v.findViewById(R.id.todoListView);
+        mRecyclerView = v.findViewById(R.id.todoListView);
 
         /* initiate adapter */
         mRecyclerAdapter = new TodoListAdapter();
 
-        TextView asdf = v.findViewById(R.id.asdf);
-        System.out.println(asdf != null ? "qqqqqqq":"bbbbbbbbbbb");
-        asdf.setText("saddfsdfsdfsa!!!");
         /* initiate recyclerview */
         mRecyclerView.setAdapter(mRecyclerAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

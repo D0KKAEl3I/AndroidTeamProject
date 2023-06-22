@@ -8,10 +8,4 @@
 
     <!-- TODO: Update blank fragment layout -->
 <include layout="@layout/todo_list_view" android:id="@+id/todoListView"/>
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="asfadad"
-    android:id="@+id/asdf"
-    />
 </FrameLayout>

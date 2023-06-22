@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,7 +18,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.ViewHo
     @NonNull
     @Override
     public TodoListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.todo_list_view, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.todo_list_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -37,6 +38,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.ViewHo
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
+        LinearLayout container;
          TextView title;
          TextView time;
          CheckBox completed;
@@ -44,13 +46,19 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.ViewHo
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            container = itemView.findViewById(R.id.todo_container);
             title = itemView.findViewById(R.id.todo_title);
-            System.out.println(title != null ? "@@@@@@@":"!!!!!!!!!!!!!");
             time =  itemView.findViewById(R.id.todo_time);
             completed =  itemView.findViewById(R.id.todo_completed);
         }
 
         void onBind(Todo item){
+            container.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
             title.setText(item.getTitle());
             time.setText(String.format("%s시 %s분", item.getDate().getHour(), item.getDate().getMinute()));
             completed.setChecked(item.getCompleted());
