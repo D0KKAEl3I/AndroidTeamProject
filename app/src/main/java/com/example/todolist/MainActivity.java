@@ -33,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                final java.util.Calendar c = java.util.Calendar.getInstance();
-                int year = c.get(java.util.Calendar.YEAR);
-                int month = c.get(java.util.Calendar.MONTH);
+                final Calendar c = Calendar.getInstance();
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(MainActivity.this, new DatePickerDialog.OnDateSetListener() {
@@ -49,21 +49,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.dayLayoutButton).setOnClickListener(new View.OnClickListener() {
+//        findViewById(R.id.dayLayoutButton).setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                FragmentView(Day_fFagmemt);
+//            }
+//        });
 
-            @Override
-            public void onClick(View view) {
-                FragmentView(Day_fFagmemt);
-            }
-        });
-
-        findViewById(R.id.monthLayoutButton).setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                FragmentView(Month_Fragment);
-            }
-        });
+//        findViewById(R.id.monthLayoutButton).setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                FragmentView(Month_Fragment);
+//            }
+//        });
 
     }
 
