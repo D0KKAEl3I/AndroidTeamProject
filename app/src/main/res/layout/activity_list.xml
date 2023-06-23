@@ -64,15 +64,15 @@
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/createTodo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
-        android:backgroundTint="#00aaff"
+        android:backgroundTint="#B3E6FF"
         android:contentDescription="일정 추가"
         android:src="@drawable/baseline_playlist_add_24_white"
-        android:tint="@color/white" />
+        />
 </RelativeLayout>

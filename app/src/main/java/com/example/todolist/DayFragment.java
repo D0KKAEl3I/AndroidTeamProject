@@ -9,6 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.gson.JsonObject;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -23,6 +28,7 @@ import retrofit2.Response;
  * create an instance of this fragment.
  */
 public class DayFragment extends Fragment {
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -71,8 +77,6 @@ public class DayFragment extends Fragment {
         }
     }
 
-    Call<ArrayList<Todo>> call;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -86,7 +90,8 @@ public class DayFragment extends Fragment {
         /* initiate recyclerview */
 
         ListActivity ac = (ListActivity) getActivity();
-        call = RetrofitClient.getApiService().getTodoList(ac.date.format(DateTimeFormatter.ofPattern("yyyyMMdd") ));
+
+        Call<ArrayList<Todo>> call = RetrofitClient.getApiService().getTodoList(ac.date.format(DateTimeFormatter.ofPattern("yyyyMMdd") ));
         call.enqueue(new Callback<ArrayList<Todo>>() {
             //콜백 받는 부분
             @Override

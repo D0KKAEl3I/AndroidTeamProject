@@ -9,12 +9,17 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.time.LocalDate;
 import java.util.Calendar;
 
 public class ListActivity extends AppCompatActivity {
     TextView datePicker;
     LocalDate date = LocalDate.now();
+
+    FloatingActionButton createTodo;
 
     private final int Day_fFagmemt = 1;
     private final int Month_Fragment = 2;
@@ -28,6 +33,7 @@ public class ListActivity extends AppCompatActivity {
 
         // on below line we are initializing our variables.
         datePicker = findViewById(R.id.datePicker);
+        createTodo = findViewById(R.id.createTodo);
 
         // on below line we are adding
         // click listener for our edit text.
@@ -52,21 +58,14 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
-//        findViewById(R.id.dayLayoutButton).setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View view) {
-//                FragmentView(Day_fFagmemt);
-//            }
-//        });
-
-//        findViewById(R.id.monthLayoutButton).setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View view) {
-//                FragmentView(Month_Fragment);
-//            }
-//        });
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this );
+        bottomSheetDialog.setContentView(R.layout.create_todo_dialog_layout);
+        createTodo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                        bottomSheetDialog.show();
+            }
+        });
 
     }
 

@@ -47,9 +47,11 @@
             android:layout_marginLeft="8dp"
             android:layout_weight="1"
             android:text="날짜 선택"
+            android:id="@+id/date"
             />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/date_picker"
             style="@style/Widget.Material3.Button.IconButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,6 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:id="@+id/submit"
             android:text="추가" />
     </LinearLayout>
 </LinearLayout>
