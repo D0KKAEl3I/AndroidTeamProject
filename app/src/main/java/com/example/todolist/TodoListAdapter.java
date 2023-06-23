@@ -6,9 +6,12 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
 
@@ -53,10 +56,12 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.ViewHo
         }
 
         void onBind(Todo item){
+            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(itemView.getContext() );
+            bottomSheetDialog.setContentView(R.layout.todolist_bottom_sheet_layout);
             container.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
-
+                    bottomSheetDialog.show();
                 }
             });
             title.setText(item.getTitle());
