@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -70,8 +71,26 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.ViewHo
                 }
             });
             title.setText(item.getTitle());
-            time.setText(String.format("%s시 %s분", item.getDateTime().getHour(), item.getDateTime().getMinute()));
-            completed.setChecked(item.getCompleted());
+            time.setText(String.format("%s시 %s분", item.getDateTime().substring(8,10), item.getDateTime().substring(10,12)));
+            completed.setChecked(item.getCompleted() == 1);
+            completed.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    Call<Object> call = RetrofitClient.getApiService().updateCompleted(new TodoCompleteForm(item.getNo(), isChecked ? 1 : 0));
+                    call.enqueue(new Callback<Object>() {
+                        //콜백 받는 부분
+                        @Override
+                        public void onResponse(Call<Object> call, Response<Object> response) {
+                            System.out.println("suc"+item.getNo());
+                        }
+
+                        @Override
+                        public void onFailure(Call<Object> call, Throwable t) {
+                            System.out.println(t.getCause());
+                        }
+                    });
+                }
+            });
         }
     }
 }

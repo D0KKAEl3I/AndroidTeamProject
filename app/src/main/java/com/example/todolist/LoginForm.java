@@ -4,30 +4,30 @@ import com.google.gson.annotations.SerializedName;
 
 public class LoginForm {
 
-    @SerializedName("userId")
-    private String userId;
+    @SerializedName("id")
+    private String id;
 
-    @SerializedName("userPw")
-    private String userPw;
+    @SerializedName("password")
+    private String password;
 
     public LoginForm(String userId, String userPw) {
-        this.userId = userId;
-        this.userPw = userPw;
+        this.id = userId;
+        this.password = userPw;
     }
 
     public String getUserId() {
-        return userId;
+        return id;
     }
 
     public void setUserId(String userId) {
-        this.userId = userId;
+        this.id = userId;
     }
 
     public String getUserPw() {
-        return userPw;
+        return password;
     }
 
     public void setUserPw(String userPw) {
-        this.userPw = userPw;
+        this.password = userPw;
     }
 }

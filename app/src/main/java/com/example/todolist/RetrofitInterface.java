@@ -30,9 +30,8 @@ public interface RetrofitInterface {
         }
     ]
     */
-    @GET("todos")
+    @GET("getList")
     Call<ArrayList<Todo>> getTodoList(
-            @Query("date") String dateString
     );
 
     /*
@@ -58,7 +57,7 @@ public interface RetrofitInterface {
      *   dateTime: LocalDateTime
      * }
      */
-    @POST("todo")
+    @POST("addList")
     Call<Todo> createTodo(
             @Body TodoForm body
     );
@@ -91,9 +90,14 @@ public interface RetrofitInterface {
      *   userPw : "admin123"
      * }
      */
-    @POST("/login/login")
+    @POST("login")
     Call<ResponseLogin> login(
             @Body LoginForm body
+    );
+
+    @POST("updateCompleted")
+    Call<Object> updateCompleted(
+            @Body TodoCompleteForm body
     );
 
 }

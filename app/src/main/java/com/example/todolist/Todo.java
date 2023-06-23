@@ -7,9 +7,25 @@ import java.time.LocalDateTime;
 
 public class Todo {
 
+    @SerializedName("no")
+    @Expose
+    private int no;
+
     @SerializedName("id")
     @Expose
-    private int id;
+    private String id;
+
+    public int getNo() {
+        return no;
+    }
+
+    public void setNo(int no) {
+        this.no = no;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     @SerializedName("title")
     @Expose
@@ -17,13 +33,13 @@ public class Todo {
 
     @SerializedName("dateTime")
     @Expose
-    private LocalDateTime dateTime;
+    private String dateTime;
 
     @SerializedName("completed")
     @Expose
-    private Boolean completed;
+    private int completed;
 
-    public Todo(String title, LocalDateTime dateTime, Boolean completed) {
+    public Todo(String title, String dateTime, int completed) {
         this.title = title;
         this.dateTime = dateTime;
         this.completed = completed;
@@ -37,28 +53,20 @@ public class Todo {
         this.title = title;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public LocalDateTime getDateTime() {
+    public String getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
+    public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
     }
 
 
-    public Boolean getCompleted() {
+    public int getCompleted() {
         return completed;
     }
 
-    public void setCompleted(Boolean completed) {
+    public void setCompleted(int completed) {
         this.completed = completed;
     }
 

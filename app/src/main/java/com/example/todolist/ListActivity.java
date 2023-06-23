@@ -63,7 +63,8 @@ public class ListActivity extends AppCompatActivity {
         createTodo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                        bottomSheetDialog.show();
+                CreateTodoDialog createTodoDialog = new CreateTodoDialog();
+                createTodoDialog.show(getSupportFragmentManager(), createTodoDialog.getTag());
             }
         });
 

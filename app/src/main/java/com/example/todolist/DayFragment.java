@@ -89,25 +89,24 @@ public class DayFragment extends Fragment {
 
         /* initiate recyclerview */
 
-        ListActivity ac = (ListActivity) getActivity();
-
-        Call<ArrayList<Todo>> call = RetrofitClient.getApiService().getTodoList(ac.date.format(DateTimeFormatter.ofPattern("yyyyMMdd") ));
+        Call<ArrayList<Todo>> call = RetrofitClient.getApiService().getTodoList();
+        System.out.println("@@@Request");
         call.enqueue(new Callback<ArrayList<Todo>>() {
             //콜백 받는 부분
             @Override
             public void onResponse(Call<ArrayList<Todo>> call, Response<ArrayList<Todo>> response) {
 
+                System.out.println("@@@@response");
                 mRecyclerView.setAdapter(mRecyclerAdapter);
                 mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                 ArrayList<Todo> result = response.body();
-
-                todoList = new ArrayList<Todo>();
-                for (int i = 0; i < result.size(); i++) {
-                    Todo todo = result.get(i);
-                    // FIXME 현수야 api 완성되면 LocalDateTime.now() => todo.getDateTime() 으로 변경해줘. 데이터 안오는 상황이라 에러나고있어
-                    todoList.add(new Todo(todo.getTitle(), LocalDateTime.now(), todo.getCompleted()));
-                }
-                mRecyclerAdapter.setTodoList(todoList);
+                System.out.println("@@@@"+result.size());
+                    todoList = new ArrayList<Todo>();
+                    for (int i = 0; i < result.size(); i++) {
+                        Todo todo = result.get(i);
+                        todoList.add(new Todo(todo.getTitle(), todo.getDateTime(), todo.getCompleted()));
+                    }
+                    mRecyclerAdapter.setTodoList(todoList);
             }
 
             @Override

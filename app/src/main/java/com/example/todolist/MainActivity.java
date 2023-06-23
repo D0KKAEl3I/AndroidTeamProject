@@ -52,27 +52,23 @@ public class MainActivity extends AppCompatActivity {
                     // 서버 통신
                     LoginForm loign = new LoginForm(id, pw);
                     Call<ResponseLogin> call = RetrofitClient.getApiService().login(loign);
-                    System.out.println(id + " : " + pw);
                     call.enqueue(new Callback<ResponseLogin>() {
                         //콜백 받는 부분
                         @Override
                         public void onResponse(Call<ResponseLogin> call, Response<ResponseLogin> response) {
                             // 로그인 성공 시 아래 코드 넣어주면 됨.
+                            if(response.body().getLogin().equals("pass")){
                             Intent intent = new Intent(MainActivity.this,ListActivity.class);
                             startActivity(intent);
+                            } else{
+                                ToastMessageEvent("로그인 실패");
+                            }
                         }
 
                         @Override
                         public void onFailure(Call<ResponseLogin> call, Throwable t) {
                             boolean test = false; // responce 값으로 바꿔주면 됨.
-                            System.out.println("test : " + t.getMessage());
-                            if (test) {
-                                // responce 아이디가 없을때
-                                ToastMessageEvent("메세지");
-                            } else if (test) {
-                                // 비밀번호가 잘못 되었을 때
-                                ToastMessageEvent("메세지");
-                            }
+                            ToastMessageEvent("로그인 실패");
                         }
                     });
                 }
