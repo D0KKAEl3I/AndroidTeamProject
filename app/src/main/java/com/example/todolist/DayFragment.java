@@ -3,6 +3,7 @@ package com.example.todolist;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,8 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.DateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -68,6 +74,8 @@ import java.util.ArrayList;
         }
     }
 
+    Call<data_model> call;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -82,9 +90,28 @@ import java.util.ArrayList;
         mRecyclerView.setAdapter(mRecyclerAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        MainActivity ac = (MainActivity)getActivity();
+        call = RetrofitClient.getApiService().test_api_get("5");
+        final String[] str = {""};
+        call.enqueue(new Callback<data_model>(){
+            //콜백 받는 부분
+            @Override
+            public void onResponse(Call<data_model> call, Response<data_model> response) {
+                data_model result = response.body();
+
+                str[0] =
+                        result.getTitle();
+            }
+
+            @Override
+            public void onFailure(Call<data_model> call, Throwable t) {
+                System.out.println(t.getCause());
+            }
+        });
         todoList = new ArrayList<Todo>();
         for (int i = 1; i <= 10; i++) {
-            todoList.add(new Todo("제목" + i, LocalDateTime.now(), i % 2 == 0));
+            System.out.println("@@@"+str[0]);
+            todoList.add(new Todo(str[0], LocalDateTime.now(), i % 2 == 0));
         }
         mRecyclerAdapter.setTodoList(todoList);
 

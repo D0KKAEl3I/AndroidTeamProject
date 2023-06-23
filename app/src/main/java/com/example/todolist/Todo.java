@@ -1,11 +1,22 @@
 package com.example.todolist;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.time.LocalDateTime;
 
 public class Todo {
 
+    @SerializedName("title")
+    @Expose
     private String title;
+
+    @SerializedName("dateTime")
+    @Expose
     private LocalDateTime dateTime;
+
+    @SerializedName("completed")
+    @Expose
     private Boolean completed;
 
     public Todo(String title, LocalDateTime dateTime, Boolean completed) {

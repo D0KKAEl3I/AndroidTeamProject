@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,6 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.ViewHolder> {
     private ArrayList<Todo> todoList;
@@ -46,6 +49,8 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.ViewHo
          TextView time;
          CheckBox completed;
 
+
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -57,14 +62,14 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.ViewHo
 
         void onBind(Todo item){
             BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(itemView.getContext() );
-            bottomSheetDialog.setContentView(R.layout.todolist_bottom_sheet_layout);
+            bottomSheetDialog.setContentView(R.layout.update_todo_dialog_layout);
             container.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
                     bottomSheetDialog.show();
                 }
             });
-            title.setText(item.getTitle());
+//            title.setText(item.getTitle());
             time.setText(String.format("%s시 %s분", item.getDate().getHour(), item.getDate().getMinute()));
             completed.setChecked(item.getCompleted());
         }

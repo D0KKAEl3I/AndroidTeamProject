@@ -21,13 +21,17 @@
             android:paddingHorizontal="32dp"
             >
 
-            <ImageButton
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="#ffffff"
-                android:src="@drawable/baseline_keyboard_arrow_left_24"
-                android:scaleType="fitCenter"
+                app:icon="@drawable/baseline_keyboard_arrow_left_24"
+style="@style/Widget.Material3.Button.IconButton"
+                app:iconSize="48dp"
+                android:padding="0dp"
+                android:id="@+id/decrease_date"
+
                 />
 
             <TextView
@@ -41,14 +45,16 @@
                 android:textSize="24dp"
                 android:textAlignment="center"
                 />
-
-            <ImageButton
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/baseline_keyboard_arrow_right_24"
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="#ffffff"
-                android:scaleType="fitCenter"
+                app:icon="@drawable/baseline_keyboard_arrow_right_24"
+                style="@style/Widget.Material3.Button.IconButton"
+                app:iconSize="48dp"
+                android:padding="0dp"
+android:id="@+id/increase_date"
                 />
         </LinearLayout>
 

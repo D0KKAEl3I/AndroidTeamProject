@@ -9,10 +9,12 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
     TextView datePicker;
+    LocalDate date = LocalDate.now();
 
     private final int Day_fFagmemt = 1;
     private final int Month_Fragment = 2;
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(MainActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        date = LocalDate.of(year,month,dayOfMonth);
                         datePicker.setText(String.format("%d년 %d월 %d일", year, month+1, dayOfMonth));
                     }
                 }, year, month, day);
