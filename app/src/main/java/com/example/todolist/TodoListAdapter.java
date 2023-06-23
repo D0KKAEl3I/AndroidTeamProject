@@ -69,7 +69,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.ViewHo
                     bottomSheetDialog.show();
                 }
             });
-//            title.setText(item.getTitle());
+            title.setText(item.getTitle());
             time.setText(String.format("%s시 %s분", item.getDate().getHour(), item.getDate().getMinute()));
             completed.setChecked(item.getCompleted());
         }

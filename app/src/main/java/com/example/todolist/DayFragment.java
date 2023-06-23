@@ -25,15 +25,15 @@ import retrofit2.Response;
  * Use the {@link DayFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-    public class DayFragment extends Fragment {
+public class DayFragment extends Fragment {
 
-        // TODO: Rename parameter arguments, choose names that match
-        // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-        private static final String ARG_PARAM1 = "param1";
-        private static final String ARG_PARAM2 = "param2";
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
 
-        // TODO: Rename and change types of parameters
-        private String mParam1;
+    // TODO: Rename and change types of parameters
+    private String mParam1;
     private String mParam2;
 
     private RecyclerView mRecyclerView;
@@ -74,7 +74,7 @@ import retrofit2.Response;
         }
     }
 
-    Call<data_model> call;
+    Call<ArrayList<data_model>> call;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,33 +87,30 @@ import retrofit2.Response;
         mRecyclerAdapter = new TodoListAdapter();
 
         /* initiate recyclerview */
-        mRecyclerView.setAdapter(mRecyclerAdapter);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        MainActivity ac = (MainActivity)getActivity();
-        call = RetrofitClient.getApiService().test_api_get("5");
-        final String[] str = {""};
-        call.enqueue(new Callback<data_model>(){
+        MainActivity ac = (MainActivity) getActivity();
+        call = RetrofitClient.getApiService().test_api_get();
+        call.enqueue(new Callback<ArrayList<data_model>>() {
             //콜백 받는 부분
             @Override
-            public void onResponse(Call<data_model> call, Response<data_model> response) {
-                data_model result = response.body();
+            public void onResponse(Call<ArrayList<data_model>> call, Response<ArrayList<data_model>> response) {
 
-                str[0] =
-                        result.getTitle();
+                mRecyclerView.setAdapter(mRecyclerAdapter);
+                mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                ArrayList<data_model> result = response.body();
+
+                todoList = new ArrayList<Todo>();
+                for (int i = 0; i < result.size(); i++) {
+                    todoList.add(new Todo(result.get(i).getTitle(), LocalDateTime.now(), i % 2 == 0));
+                }
+                mRecyclerAdapter.setTodoList(todoList);
             }
 
             @Override
-            public void onFailure(Call<data_model> call, Throwable t) {
+            public void onFailure(Call<ArrayList<data_model>> call, Throwable t) {
                 System.out.println(t.getCause());
             }
         });
-        todoList = new ArrayList<Todo>();
-        for (int i = 1; i <= 10; i++) {
-            System.out.println("@@@"+str[0]);
-            todoList.add(new Todo(str[0], LocalDateTime.now(), i % 2 == 0));
-        }
-        mRecyclerAdapter.setTodoList(todoList);
 
         return v;
     }
