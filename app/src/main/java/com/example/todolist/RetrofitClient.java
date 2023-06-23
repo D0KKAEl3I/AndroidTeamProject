@@ -7,6 +7,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
+
+    // 서버 호스트 주소
     private static final String BASE_URL = "https://jsonplaceholder.typicode.com/";
 
     public static RetrofitInterface getApiService() {

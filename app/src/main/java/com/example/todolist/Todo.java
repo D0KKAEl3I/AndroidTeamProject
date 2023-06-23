@@ -7,6 +7,10 @@ import java.time.LocalDateTime;
 
 public class Todo {
 
+    @SerializedName("id")
+    @Expose
+    private int id;
+
     @SerializedName("title")
     @Expose
     private String title;
@@ -33,13 +37,22 @@ public class Todo {
         this.title = title;
     }
 
-    public LocalDateTime getDate() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getDateTime() {
         return dateTime;
     }
 
-    public void setDate(LocalDateTime dateTime) {
+    public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
+
 
     public Boolean getCompleted() {
         return completed;
