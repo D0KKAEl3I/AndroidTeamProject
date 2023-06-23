@@ -30,7 +30,6 @@ public interface RetrofitInterface {
         }
     ]
     */
-    @GET("todos")
     Call<ArrayList<Todo>> getTodoList(
             @Query("date") String dateString
     );
@@ -45,7 +44,6 @@ public interface RetrofitInterface {
     *   completed: false // 완료 여부
     * }
     *  */
-    @GET("todo/{todoId}")
     Call<ArrayList<Todo>> getTodo(
             @Path("todoId") int todoId
     );

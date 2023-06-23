@@ -12,73 +12,77 @@
         android:orientation="vertical"
         >
 
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="60dp"
+            android:layout_gravity="top"
+            android:background="@drawable/border"
+            android:text="Todo List"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textSize="24dp"
+            />
 
-            android:background="#ffffff"
-            android:elevation="8dp"
-            android:paddingHorizontal="32dp"
-            >
 
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="#ffffff"
-                app:icon="@drawable/baseline_keyboard_arrow_left_24"
-style="@style/Widget.Material3.Button.IconButton"
-                app:iconSize="48dp"
-                android:padding="0dp"
-                android:id="@+id/decrease_date"
 
-                />
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:text="로그인"
+            android:textAlignment="center"
+            android:textSize="24dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="60dp"
+            android:layout_gravity="center"
+            />
 
-            <TextView
-                android:id="@+id/datePicker"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="3"
-                android:paddingLeft="16dp"
-                android:text="2023년 06월 10일"
-                android:textSize="24dp"
-                android:textAlignment="center"
-                />
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="#ffffff"
-                app:icon="@drawable/baseline_keyboard_arrow_right_24"
-                style="@style/Widget.Material3.Button.IconButton"
-                app:iconSize="48dp"
-                android:padding="0dp"
-android:id="@+id/increase_date"
-                />
-        </LinearLayout>
-
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragmentContainerView"
-            android:layout_width="match_parent"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/navigation_main" />
+            android:layout_marginBottom="8dp"
+            android:hint="ID">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/userId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
+            android:hint="PassWord">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/userPw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLogin"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:text="로그인"
+            />
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="24dp"
+            android:text="회원가입"
+            android:layout_gravity="left"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="80dp"
+            android:textSize="12dp" />
     </LinearLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="16dp"
-        android:backgroundTint="#00aaff"
-        android:contentDescription="일정 추가"
-        android:src="@drawable/baseline_playlist_add_24_white"
-        android:tint="@color/white" />
 </RelativeLayout>
