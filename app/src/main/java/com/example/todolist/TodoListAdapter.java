@@ -70,7 +70,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.ViewHo
                 }
             });
             title.setText(item.getTitle());
-            time.setText(String.format("%s시 %s분", item.getDate().getHour(), item.getDate().getMinute()));
+            time.setText(String.format("%s시 %s분", item.getDateTime().getHour(), item.getDateTime().getMinute()));
             completed.setChecked(item.getCompleted());
         }
     }

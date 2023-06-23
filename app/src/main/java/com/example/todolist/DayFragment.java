@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -74,7 +75,7 @@ public class DayFragment extends Fragment {
         }
     }
 
-    Call<ArrayList<data_model>> call;
+    Call<ArrayList<Todo>> call;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -89,25 +90,27 @@ public class DayFragment extends Fragment {
         /* initiate recyclerview */
 
         MainActivity ac = (MainActivity) getActivity();
-        call = RetrofitClient.getApiService().test_api_get();
-        call.enqueue(new Callback<ArrayList<data_model>>() {
+        call = RetrofitClient.getApiService().getTodoList(ac.date.format(DateTimeFormatter.ofPattern("yyyyMMdd") ));
+        call.enqueue(new Callback<ArrayList<Todo>>() {
             //콜백 받는 부분
             @Override
-            public void onResponse(Call<ArrayList<data_model>> call, Response<ArrayList<data_model>> response) {
+            public void onResponse(Call<ArrayList<Todo>> call, Response<ArrayList<Todo>> response) {
 
                 mRecyclerView.setAdapter(mRecyclerAdapter);
                 mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                ArrayList<data_model> result = response.body();
+                ArrayList<Todo> result = response.body();
 
                 todoList = new ArrayList<Todo>();
                 for (int i = 0; i < result.size(); i++) {
-                    todoList.add(new Todo(result.get(i).getTitle(), LocalDateTime.now(), i % 2 == 0));
+                    Todo todo = result.get(i);
+                    // FIXME 현수야 api 완성되면 LocalDateTime.now() => todo.getDateTime() 으로 변경해줘. 데이터 안오는 상황이라 에러나고있어
+                    todoList.add(new Todo(todo.getTitle(), LocalDateTime.now(), todo.getCompleted()));
                 }
                 mRecyclerAdapter.setTodoList(todoList);
             }
 
             @Override
-            public void onFailure(Call<ArrayList<data_model>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<Todo>> call, Throwable t) {
                 System.out.println(t.getCause());
             }
         });
