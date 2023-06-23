@@ -48,6 +48,23 @@ public class MainActivity extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
+
+//        findViewById(R.id.dayLayoutButton).setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                FragmentView(Day_fFagmemt);
+//            }
+//        });
+
+//        findViewById(R.id.monthLayoutButton).setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                FragmentView(Month_Fragment);
+//            }
+//        });
+
     }
 
     private void FragmentView(int fragment) {
