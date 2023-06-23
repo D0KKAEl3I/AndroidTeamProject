@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClient {
 
     // 서버 호스트 주소
-    private static final String BASE_URL = "https://jsonplaceholder.typicode.com/";
+    private static final String BASE_URL = "http://192.168.123.100:4000";
 
     public static RetrofitInterface getApiService() {
         return getInstance().create(RetrofitInterface.class);

@@ -91,8 +91,8 @@ public interface RetrofitInterface {
      *   userPw : "admin123"
      * }
      */
-    @POST("login")
-    Call<LoginForm> login(
+    @POST("/login/login")
+    Call<ResponseLogin> login(
             @Body LoginForm body
     );
 
