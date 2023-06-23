@@ -83,4 +83,17 @@ public interface RetrofitInterface {
             @Path("todoId") int todoId
     );
 
+
+    /* POST
+     * 로그인
+     * {
+     *   userId : "admin",
+     *   userPw : "admin123"
+     * }
+     */
+    @POST("login")
+    Call<LoginForm> login(
+            @Body LoginForm body
+    );
+
 }
