@@ -83,7 +83,13 @@ public class DayFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_day_layout, container, false);
         mRecyclerView = v.findViewById(R.id.todoListView);
+loadItems();
 
+
+        return v;
+    }
+
+    public void loadItems(){
         /* initiate adapter */
         mRecyclerAdapter = new TodoListAdapter();
 
@@ -101,12 +107,12 @@ public class DayFragment extends Fragment {
                 mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                 ArrayList<Todo> result = response.body();
                 System.out.println("@@@@"+result.size());
-                    todoList = new ArrayList<Todo>();
-                    for (int i = 0; i < result.size(); i++) {
-                        Todo todo = result.get(i);
-                        todoList.add(new Todo(todo.getTitle(), todo.getDateTime(), todo.getCompleted()));
-                    }
-                    mRecyclerAdapter.setTodoList(todoList);
+                todoList = new ArrayList<Todo>();
+                for (int i = 0; i < result.size(); i++) {
+                    Todo todo = result.get(i);
+                    todoList.add(new Todo(todo.getNo(), todo.getTitle(), todo.getDateTime(), todo.getCompleted()));
+                }
+                mRecyclerAdapter.setTodoList(todoList);
             }
 
             @Override
@@ -114,7 +120,5 @@ public class DayFragment extends Fragment {
                 System.out.println(t.getCause());
             }
         });
-
-        return v;
     }
 }

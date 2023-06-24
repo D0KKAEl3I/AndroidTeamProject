@@ -70,7 +70,7 @@ public class ListActivity extends AppCompatActivity {
 
     }
 
-    private void FragmentView(int fragment) {
+    public void FragmentView(int fragment) {
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 

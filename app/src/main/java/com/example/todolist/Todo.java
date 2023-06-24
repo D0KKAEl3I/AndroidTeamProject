@@ -39,7 +39,9 @@ public class Todo {
     @Expose
     private int completed;
 
-    public Todo(String title, String dateTime, int completed) {
+    public Todo(int no,  String title, String dateTime, int completed) {
+        this.no = no;
+        this.id = "tlsgustn";
         this.title = title;
         this.dateTime = dateTime;
         this.completed = completed;

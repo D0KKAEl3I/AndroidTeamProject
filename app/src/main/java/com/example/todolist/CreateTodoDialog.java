@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
@@ -88,16 +89,18 @@ TextView date;
             public void onClick(View v) {
                 formValues.setTitle(title.getText().toString());
                 System.out.println(formValues.getId()+" "+formValues.getTitle()+" "+formValues.getDateTime());
-                Call<Todo> call = RetrofitClient.getApiService().createTodo(formValues);
-                call.enqueue(new Callback<Todo>() {
+                Call<Object> call = RetrofitClient.getApiService().createTodo(formValues);
+                call.enqueue(new Callback<Object>() {
                     //콜백 받는 부분
                     @Override
-                    public void onResponse(Call<Todo> call, Response<Todo> response) {
+                    public void onResponse(Call<Object> call, Response<Object> response) {
+                        System.out.println("FUCK");
+                        ((ListActivity) getActivity()).FragmentView(1);
                         dismiss();
                     }
 
                     @Override
-                    public void onFailure(Call<Todo> call, Throwable t) {
+                    public void onFailure(Call<Object> call, Throwable t) {
                         System.out.println(t.getCause());
                     }
                 });

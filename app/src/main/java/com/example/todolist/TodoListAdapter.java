@@ -70,12 +70,15 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.ViewHo
                     bottomSheetDialog.show();
                 }
             });
+            System.out.println(item.getNo()
+            );
             title.setText(item.getTitle());
             time.setText(String.format("%s시 %s분", item.getDateTime().substring(8,10), item.getDateTime().substring(10,12)));
             completed.setChecked(item.getCompleted() == 1);
             completed.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    System.out.println(isChecked+" "+item.getNo());
                     Call<Object> call = RetrofitClient.getApiService().updateCompleted(new TodoCompleteForm(item.getNo(), isChecked ? 1 : 0));
                     call.enqueue(new Callback<Object>() {
                         //콜백 받는 부분

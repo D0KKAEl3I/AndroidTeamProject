@@ -6,6 +6,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -58,7 +59,7 @@ public interface RetrofitInterface {
      * }
      */
     @POST("addList")
-    Call<Todo> createTodo(
+    Call<Object> createTodo(
             @Body TodoForm body
     );
 
@@ -95,7 +96,7 @@ public interface RetrofitInterface {
             @Body LoginForm body
     );
 
-    @POST("updateCompleted")
+    @PATCH("updateCompleted")
     Call<Object> updateCompleted(
             @Body TodoCompleteForm body
     );
